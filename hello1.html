@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="hello1.css">
+<title>Countdown Timer</title>
+</head>
+
+
+<body>
+
+   
+ <h3 class="title">Select a suitable time for sale</h3>
+  <div class="hours">
+  <label for="hour\s"> Select Hours:</label>
+  <input type="number" id="hours" class="hours" min="1" max="12" value="0">
+<br>
+  <label for="minutes">Select Minutes:</label>
+  <input type="number" id="minutes"class="hours" min="0" max="59" value="0">
+  <br>
+
+  <label for="seconds">Select Seconds:</label>
+  <input type="number" id="seconds"class="hours" min="0" max="59" value="0">
+  <br>
+  <label for="ampm">AM/PM:</label>
+  <select id="ampm" class="hours">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+    <br>
+  </select>
+</div>
+  <br>
+  <button onclick="startCountdown()" class="countdown">Set Countdown</button>
+  <br><br>
+<div id="countdown"></div>
+
+  </body>
+
+  
+
+  <script>
+    function startCountdown() {
+      var ampm = document.getElementById("ampm").value;
+      var hours = parseInt(document.getElementById("hours").value);
+      var minutes = parseInt(document.getElementById("minutes").value);
+      var seconds = parseInt(document.getElementById("seconds").value);
+      
+      var currentTime = new Date();
+      var targetTime = new Date();
+
+      // Convert hours to 24-hour format if PM is selected
+      if (ampm === "PM") {
+        hours += 12;
+      }
+
+      targetTime.setHours(hours, minutes, seconds, 0);
+
+      var timeDifference = targetTime.getTime() - currentTime.getTime();
+      
+      if (timeDifference < 0) {
+        alert("Invalid time. Please select a future time.");
+        return;
+      }
+
+      var countdownInterval = setInterval(function() {
+        timeDifference -= 1000;
+        if (timeDifference <= 0) {
+          clearInterval(countdownInterval);
+          document.getElementById("countdown").innerText = "Countdown finished!";
+        } else {
+          var daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          var hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60));
+          var minutesRemaining = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          var secondsRemaining = Math.floor((timeDifference % (1000 * 60)) / 1000);
+          document.getElementById("countdown").innerText = "Time remaining: " + hoursRemaining + "h " + minutesRemaining + "m " + secondsRemaining + "s";
+          window.location.href="countdown1.html?&days="+ daysRemaining + "&hours=" + hoursRemaining + "&minutes=" + minutesRemaining + "&seconds=" + secondsRemaining;
+        }
+      }, 1000);
+    }
+  </script>
+</html>
