@@ -1286,14 +1286,16 @@ font-size: 26px;
 }
 
 .hello{
-  background: url(image7.jpg);
+  background: url(image11.jpg);
+    background-size: cover;
 }
 
 
 
 .title {
+  padding: 10px;
   margin-top: 100px;
-  color: blue;
+  color: red;
   text-align: center;
   font-size: 2.5rem;
 
@@ -1328,7 +1330,7 @@ font-size: 26px;
   margin: 20px;
  text-align: center;
  font-weight: bold;
-color: black;
+color: green;
 
 
 }
@@ -1342,13 +1344,13 @@ color: black;
   font-size: 20px;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
-  color: black;
+  color:red;
 
 
 
 }
 .hours:hover, .minutes:hover, .seconds:hover {
-  color: blueviolet; /* Change color to red on hover */
+  color: blue; /* Change color to red on hover */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 
